@@ -25,7 +25,9 @@ function create_pangenome_env {
     # }
 }
 function create_pangenome_graph {
+    conda init
     conda activate pangenome-env
+    module load samtools
     cat hg19_region.fa hg38_region.fa > combined.fa
     samtools faidx combined.fa
     pggb -i combined.fa -o output -s 5000 -p 95 -n 2 -t 1
@@ -53,26 +55,25 @@ iead hg19_vega.bed
     head temp_hg19.bed
     mv temp_hg19.bed hg19_vega_backup.bed
 }
+
+#make sure to run within a job
 function inject_genes {
+    #bsub -P acc_oscarlr -q interactive -n 8 -W 1 -R span[hosts=1]  -Is /bin/bash
+    conda init
+    source ~/.bashrc 
+    conda activate pangenome-env
     odgi inject -i pggb.og -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og
-    odgi inject -i pggb_hg38_ighv.og -b hg19_vega_backup.bed -o pggb_injected.og
+    #odgi inject -i pggb_hg38_ighv.og -b hg19_vega_backup.bed -o pggb_injected.og
 }
 
 function get_genes_in_SVs {
     odgi position -i pggb.og -p IGHV3-64D
 }
-download_genomes
-create_pangenome_env
-create_pangenome_graph
-backup_ighv
-filter_ighv_genes
-subtract_start_position_and_set_proper_labels_for_odgi
+#download_genomes
+#create_pangenome_env
+#create_pangenome_graph
+#backup_ighv
+#filter_ighv_genes
+#subtract_start_position_and_set_proper_labels_for_odgi
 inject_genes
 
-
-Different writing styles greatly affect the quality of the generated text.
-The quality of the generated text is greatly affected by different writing styles.
-Writing styles have a significant impact on the quality of the generated text.
-How you write can greatly influence the quality of the text that is generated.
-Generated text is sensitively affected by the writing style.
-Writing style affects generated text quality.
