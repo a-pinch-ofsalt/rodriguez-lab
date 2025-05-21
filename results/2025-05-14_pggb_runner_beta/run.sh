@@ -15,7 +15,7 @@ function get_ighv_locus {
 }
 
 function create_pangenome_env {
-    module load anaconda3
+    #module load anaconda3
     conda init
     conda create -n pangenome-env -c bioconda -c conda-forge pggb odgi smoothxg wfmash=0.13.1 -y
 
@@ -56,13 +56,20 @@ iead hg19_vega.bed
     mv temp_hg19.bed hg19_vega_backup.bed
 }
 
+function fix_files {
+    awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4}' hg38_gencode_v47_backup.bed > hg38_gencode_v47_backup_fixed.bed
+    awk 'BEGIN{OFS="\t"} {print $1, $2, $3, $4}' hg19_vega_backup.bed > hg19_vega_backup_fixed.bed
+    mv hg38_gencode_v47_backup_fixed.bed hg38_gencode_v47_backup.bed
+    mv hg19_vega_backup_fixed.bed hg19_vega_backup.bed
+
+}
+
 #make sure to run within a job
 function inject_genes {
     #bsub -P acc_oscarlr -q interactive -n 8 -W 1 -R span[hosts=1]  -Is /bin/bash
     conda init
-    source ~/.bashrc 
     conda activate pangenome-env
-    odgi inject -i pggb.og -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og
+    odgi inject -i output/combined.fa.36fc4b3.417fcdf.seqwish.gfa -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og
     #odgi inject -i pggb_hg38_ighv.og -b hg19_vega_backup.bed -o pggb_injected.og
 }
 
@@ -71,9 +78,10 @@ function get_genes_in_SVs {
 }
 #download_genomes
 #create_pangenome_env
-#create_pangenome_graph
-#backup_ighv
-#filter_ighv_genes
-#subtract_start_position_and_set_proper_labels_for_odgi
+# create_pangenome_graph
+# backup_ighv
+# filter_ighv_genes
+# subtract_start_position_and_set_proper_labels_for_odgi
 inject_genes
 
+# fix_files
