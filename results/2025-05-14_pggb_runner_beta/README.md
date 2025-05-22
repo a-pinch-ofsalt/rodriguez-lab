@@ -2,22 +2,18 @@
 # Most recent mini-projct: PGGB on Minerva
 PGGB is a difficult to setup on Minerva. Here's how you can do it:
 
-## How to run PGGB on Minerva using this repo
-1. `cd` into `results/2025-05-14_pggb_runner_beta`.
-2. Run `get_genomes.sh`, `slice_and_index_genomes.sh`, and `pggb_runner.sh`, in that order.
-3. In the `output`directory, you should see files ending in `.gfa`, `.pfa`, `.log`, and `.yml`. If `.gfa` is missing, check the `.log`.
-
-##  How to setup PGGB on Minerva yourself
-
-Read the documentation [https://pggb.readthedocs.io/en/latest/]
-1. Use bioconda
-2. Use whmash 0.13.1
-
-## How to view output pangenome with Bandage 
-1. Download Bandage [https://rrwick.github.io/Bandage/]
-2. Click `File > Load graph`
-3. Locate the `.gfa`
-4. Click `Draw graph`
+use whmash 0.13.1 for pggb 
 
 ## Known possible errors
 1. Problem: `Argument 'INT' received invalid value type '0.001'`. Solution: try version 0.13.1 of whmash `conda install -c bioconda wfmash=0.13.1`.
+2. Using [this](ttps://pastebin.com/aauVRSus) env I get a corrupted image and misplaced genes,  using [this one](https://pastebin.com/F2qNQmhP) it's fine
+![hg38_ighv](https://github.com/user-attachments/assets/ff2daf00-c881-43ae-9cce-123945caadae)
+3. You'll have to do some stuff, like pggb pangenome building and odgi injecting in a job, not in the login node.
+4. odgi requires this .bed format `chr14:105505611-107349540	1186061	1186592	IGHV3-21`, **tab, not space separated** no header. I tried concatenating two bed files to align ighv genes from two separate genomes, hg38 and hg19, in the same graph, but that's an error.
+
+## Continuing
+NA12878: https://github.com/Platinum-Pedigree-Consortium/Platinum-Pedigree-Datasets
+CHM1.1: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000306695.2/
+1. Setup AWS CLI using Conda, use aws s3 ls on the "s3://platinum-pedigree-data/assemblies/NA12878/" folder and cp whatever file you want within there
+2. Download CHM1.1 and upload it manually
+3. Here I didn't know the start and ends of ighv locus in these genomes, I was thinking BLAST using hg38_region.fa. 
