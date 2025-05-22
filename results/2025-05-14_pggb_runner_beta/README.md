@@ -1,6 +1,7 @@
 The functions should give a general feel for the steps required to set this up
 
 ## How to align graphs
+Read the full readme, run the code and fix any errors you have along the way.
 
 Here's an example result: ighv genes from hg38 aligned with hg38 and hg19, and we can see all the genes that lie in structural variants by seeing which ones lie in one but not the other. The green bar is hg38, the blue bar is hg19
 ![injected_pggb (4)](https://github.com/user-attachments/assets/36db6f84-2dd5-4b9e-ad8d-83ae32f0db5e)
@@ -24,4 +25,4 @@ CHM1.1: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000306695.2/
 1. Setup AWS CLI using Conda, use `aws s3 ls` on the `"s3://platinum-pedigree-data/assemblies/NA12878/"` folder and `cp` whatever file you want within there
 2. Download CHM1.1 and upload it manually
 3. Here I didn't know the start and ends of ighv locus in these genomes, I was thinking BLAST using hg38_region.fa. 
-4. Some of the functions, like inject_genes and get_genes_in_SVs, are incomplete, but the general idea is there. If it's not many genes you can probably eyeball the genes in structural variants.
+4. Some of the functions, like inject_genes and get_genes_in_SVs, are incomplete so you shouldn't run them, but the general idea is there. If it's not many genes you can probably eyeball the genes in structural variants.
