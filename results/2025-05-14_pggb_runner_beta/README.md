@@ -15,13 +15,13 @@ use whmash 0.13.1 for pggb
 5. odgi requires this .bed format `chr14:105505611-107349540	1186061	1186592	IGHV3-21`, **tab, not space separated** no header. I tried concatenating two bed files to align ighv genes from two separate genomes, hg38 and hg19, in the same graph, but that's an error.
 
 ## important commands
-1. pggb -i combined.fa -o output -s 5000 -p 95 -n 2 -t 1; makes a pangenome graph from the two fasta files
-2. odgi inject -i output/combined.fa.36fc4b3.417fcdf.seqwish.gfa -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og; that takes every gene in the bed file and makes it a new 'path' (i.e. a row in the alignment image) alongside the genomes
+1. `pggb -i combined.fa -o output -s 5000 -p 95 -n 2 -t 1`; makes a pangenome graph from the two fasta files
+2. `odgi inject -i output/combined.fa.36fc4b3.417fcdf.seqwish.gfa -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og`; that takes every gene in the bed file and makes it a new 'path' (i.e. a row in the alignment image) alongside the genomes
 
 ## Continuing
 NA12878: https://github.com/Platinum-Pedigree-Consortium/Platinum-Pedigree-Datasets
 CHM1.1: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000306695.2/
-1. Setup AWS CLI using Conda, use aws s3 ls on the "s3://platinum-pedigree-data/assemblies/NA12878/" folder and cp whatever file you want within there
+1. Setup AWS CLI using Conda, use `aws s3 ls` on the `"s3://platinum-pedigree-data/assemblies/NA12878/"` folder and `cp` whatever file you want within there
 2. Download CHM1.1 and upload it manually
 3. Here I didn't know the start and ends of ighv locus in these genomes, I was thinking BLAST using hg38_region.fa. 
 4. Some of the functions, like inject_genes and get_genes_in_SVs, are incomplete, but the general idea is there. If it's not many genes you can probably eyeball the genes in structural variants.
