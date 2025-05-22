@@ -16,6 +16,7 @@ Here's an example result: ighv genes from hg38 aligned with hg38 and hg19, and w
 ## important commands
 1. `pggb -i combined.fa -o output -s 5000 -p 95 -n 2 -t 1`; makes a pangenome graph from the two fasta files
 2. `odgi inject -i output/combined.fa.36fc4b3.417fcdf.seqwish.gfa -b hg38_gencode_v47_backup.bed -o pggb_hg38_ighv.og`; that takes every gene in the bed file and makes it a new 'path' (i.e. a row in the alignment image) alongside the genomes
+3. `odgi viz -i pggb_hg38_ighv.og -o pggb_hg38_ighv.png` just makes the alignment images (see above)
 
 ## Continuing
 NA12878: https://github.com/Platinum-Pedigree-Consortium/Platinum-Pedigree-Datasets
