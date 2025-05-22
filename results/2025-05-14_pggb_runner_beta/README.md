@@ -5,7 +5,6 @@ The functions should give a general feel for the steps required to set this up
 Here's an example result: ighv genes from hg38 aligned with hg38 and hg19, and we can see all the genes that lie in structural variants by seeing which ones lie in one but not the other. The green bar is hg38, the blue bar is hg19
 ![injected_pggb (4)](https://github.com/user-attachments/assets/36db6f84-2dd5-4b9e-ad8d-83ae32f0db5e)
 
-use whmash 0.13.1 for pggb 
 ## Known possible errors
 1. Problem: `Argument 'INT' received invalid value type '0.001'`. Solution: try version 0.13.1 of whmash `conda install -c bioconda wfmash=0.13.1`.
 2. Using [this env](https://pastebin.com/aauVRSus) I get a corrupted image and misplaced genes,  using [this one](https://pastebin.com/F2qNQmhP) it's fine
