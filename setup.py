@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='franklin-lab-notebook',
+    name='FranklinHLabNotebook',
     version='0.1.0',
     description="Data & Results from Franklin's lab notebook.",
     author='Franklin Hiciano',
