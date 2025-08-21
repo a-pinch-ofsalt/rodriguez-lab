@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/franklinhiciano-rodriguez-lab-notebook
+      url: https://pypi.org/p/rodriguez-lab-notebook-franklindavidhiciano
     permissions:
       id-token: write
     steps:
